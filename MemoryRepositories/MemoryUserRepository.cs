@@ -2,6 +2,7 @@
 using EntityRepository;
 
 namespace Server;
+
 public class InMemoryUserRepository : IUserRepo
 {
     private readonly List<User> users = new();
@@ -16,10 +17,15 @@ public class InMemoryUserRepository : IUserRepo
     public Task UpdateAsync(User user)
     {
         var existingUser = users.FirstOrDefault(u => u.Id == user.Id);
-        if (existingUser == null)
+        if (existingUser == null || existingUser.password!= user.password)
             throw new InvalidOperationException("User not found");
-        users.Remove(existingUser);
-        users.Add(user);
+
+        existingUser.UserName = user.UserName;
+        existingUser.password = user.password;
+        existingUser.Email = user.Email;
+        existingUser.Joined = user.Joined;
+        existingUser.Subscribes = user.Subscribes;
+
         return Task.CompletedTask;
     }
 
@@ -38,6 +44,38 @@ public class InMemoryUserRepository : IUserRepo
         var user = users.FirstOrDefault(u => u.Id == id);
         if (user == null)
             throw new InvalidOperationException("User not found");
+
+        return Task.FromResult(user);
+    }
+
+    public Task<User> SubscribeAsync(int userId, int postId)
+    {
+        var user = users.FirstOrDefault(u => u.Id == userId);
+        if (user == null)
+        {
+            throw new InvalidOperationException("User not found");
+        }
+
+        if (!user.Subscribes.Contains(postId))
+        {
+            user.Subscribes.Add(postId);
+        }
+
+        return Task.FromResult(user);
+    }
+
+    public Task<User> UnsubscribeAsync(int userId, int postId)
+    {
+        var user = users.FirstOrDefault(u => u.Id == userId);
+        if (user == null)
+        {
+            throw new InvalidOperationException("User not found");
+        }
+
+        if (user.Subscribes.Contains(postId))
+        {
+            user.Subscribes.Remove(postId);
+        }
 
         return Task.FromResult(user);
     }

@@ -18,10 +18,15 @@ public class InMemoryPostRepository : IPostRepo
     {
         var existingPost = posts.FirstOrDefault(p => p.Id == post.Id);
         if (existingPost == null)
-            throw new InvalidOperationException("Oops couldn't find post");
+            throw new InvalidOperationException("Post not found");
 
-        posts.Remove(existingPost);
-        posts.Add(post);
+        existingPost.Title = post.Title;
+        existingPost.Content = post.Content;
+        existingPost.body = post.body;
+        existingPost.UserId = post.UserId;
+        existingPost.Upvotes = post.Upvotes;
+        existingPost.Downvotes = post.Downvotes;
+
         return Task.CompletedTask;
     }
 
@@ -29,7 +34,7 @@ public class InMemoryPostRepository : IPostRepo
     {
         var post = posts.FirstOrDefault(p => p.Id == id);
         if (post == null)
-            throw new InvalidOperationException("Post Doesn't exist");
+            throw new InvalidOperationException("Post not found");
 
         posts.Remove(post);
         return Task.CompletedTask;
@@ -39,17 +44,44 @@ public class InMemoryPostRepository : IPostRepo
     {
         var post = posts.FirstOrDefault(p => p.Id == id);
         if (post == null)
-            throw new InvalidOperationException("Post not found!!");
+            throw new InvalidOperationException("Post not found");
 
         return Task.FromResult(post);
     }
 
-    public IQueryable<Post> GetAll()
+    public Task UpvoteAsync(int postId)
     {
-        throw new NotImplementedException();
+        var post = posts.FirstOrDefault(p => p.Id == postId);
+        if (post == null)
+        {
+            throw new InvalidOperationException("Post not found");
+        }
+        post.Upvotes++;
+        return Task.CompletedTask;
+    }
+    
+    public Task DownvoteAsync(int postId)
+    {
+        var post = posts.FirstOrDefault(p => p.Id == postId);
+        if (post == null)
+        {
+            throw new InvalidOperationException("Post not found");
+        }
+        post.Downvotes++;
+        return Task.CompletedTask;
     }
 
-    public IQueryable<Post> GetManyASync()
+    public IQueryable<Post> GetAll()
+    {
+        if (!posts.Any())
+        {
+            throw new InvalidOperationException("No posts found");
+        }
+
+        return posts.AsQueryable();
+    }
+
+    public IQueryable<Post> GetManyAsync()
     {
         if (!posts.Any())
         {

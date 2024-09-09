@@ -20,8 +20,13 @@ public class InMemoryCommentRepository : ICommentRepository
         if (existingComment == null)
             throw new InvalidOperationException("Comment not found");
 
-        comments.Remove(existingComment);
-        comments.Add(comment);
+        existingComment.PostId = comment.PostId;
+        existingComment.Body = comment.Body;
+        existingComment.Upvotes = comment.Upvotes;
+        existingComment.Downvotes = comment.Downvotes;
+        existingComment.CreatedAt = comment.CreatedAt;
+        existingComment.UserId = comment.UserId;
+
         return Task.CompletedTask;
     }
 
@@ -48,15 +53,59 @@ public class InMemoryCommentRepository : ICommentRepository
     {
         throw new NotImplementedException();
     }
+    
+    public Task UpvoteAsync(int commentId)
+    {
+        var comment = comments.FirstOrDefault(c => c.Id == commentId);
+        if (comment == null)
+        {
+            throw new InvalidOperationException("Oops!!");
+        }
+        comment.Upvotes++;
+        return Task.CompletedTask;
+    }
+    
+    public Task DownVoteAsync(int commentId)
+    {
+        var comment = comments.FirstOrDefault(c => c.Id == commentId);
+        if (comment == null)
+        {
+            throw new InvalidOperationException("Not found" + commentId);
+        }
+        comment.Downvotes++;
+        return Task.CompletedTask;
+    }
 
+    public Task<TimeSpan> DateTimeAgoAsync(int commentId)
+    {
+        var comment = comments.FirstOrDefault(c => c.Id == commentId);
+        if (comment == null)
+        {
+            throw new InvalidOperationException("Comment not found");
+        }
+
+        var timeAgo = DateTime.UtcNow - comment.CreatedAt;
+        return Task.FromResult(timeAgo);
+    }
+
+    public Task<int> UserDetailsAsync(int commentId)
+    {
+        var comment = comments.FirstOrDefault(c => c.Id == commentId);
+        if (comment == null)
+        {
+            throw new InvalidOperationException("Comment not found");
+        }
+
+        return Task.FromResult(comment.UserId);
+    }
+    
     public IQueryable<Comment> GetManyAsync()
     {
-        if (! comments.Any())
+        if (!comments.Any())
         {
             throw new InvalidOperationException("No comments found");
         }
 
         return comments.AsQueryable();
-
     }
 }
