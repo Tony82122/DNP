@@ -18,7 +18,7 @@ public class InMemoryPostRepository : IPostRepo
     {
         var existingPost = posts.FirstOrDefault(p => p.Id == post.Id);
         if (existingPost == null)
-            throw new InvalidOperationException("Post not found");
+            throw new InvalidOperationException("Oops couldn't find post");
 
         posts.Remove(existingPost);
         posts.Add(post);
@@ -29,7 +29,7 @@ public class InMemoryPostRepository : IPostRepo
     {
         var post = posts.FirstOrDefault(p => p.Id == id);
         if (post == null)
-            throw new InvalidOperationException("Post not found");
+            throw new InvalidOperationException("Post Doesn't exist");
 
         posts.Remove(post);
         return Task.CompletedTask;
