@@ -4,39 +4,38 @@ using EntityRepository;
 namespace Server;
 public class InMemoryUserRepository : IUserRepo
 {
-    private readonly List<User> _users = new();
+    private readonly List<User> users = new();
 
     public Task<User> AddAsync(User user)
     {
-        user.Id = _users.Any() ? _users.Max(u => u.Id) + 1 : 1;
-        _users.Add(user);
+        user.Id = users.Any() ? users.Max(u => u.Id) + 1 : 1;
+        users.Add(user);
         return Task.FromResult(user);
     }
 
     public Task UpdateAsync(User user)
     {
-        var existingUser = _users.FirstOrDefault(u => u.Id == user.Id);
+        var existingUser = users.FirstOrDefault(u => u.Id == user.Id);
         if (existingUser == null)
             throw new InvalidOperationException("User not found");
-
-        _users.Remove(existingUser);
-        _users.Add(user);
+        users.Remove(existingUser);
+        users.Add(user);
         return Task.CompletedTask;
     }
 
     public Task DeleteAsync(int id)
     {
-        var user = _users.FirstOrDefault(u => u.Id == id);
+        var user = users.FirstOrDefault(u => u.Id == id);
         if (user == null)
             throw new InvalidOperationException("User not found");
 
-        _users.Remove(user);
+        users.Remove(user);
         return Task.CompletedTask;
     }
 
     public Task<User> GetSingleAsync(int id)
     {
-        var user = _users.FirstOrDefault(u => u.Id == id);
+        var user = users.FirstOrDefault(u => u.Id == id);
         if (user == null)
             throw new InvalidOperationException("User not found");
 
@@ -45,16 +44,16 @@ public class InMemoryUserRepository : IUserRepo
 
     public IQueryable<User> GetAll()
     {
-        return _users.AsQueryable();
+        return users.AsQueryable();
     }
 
     public Task<IQueryable<User>> GetManyAsync()
     {
-        if (!_users.Any())
+        if (!users.Any())
         {
             throw new InvalidOperationException("No users found");
         }
 
-        return Task.FromResult(_users.AsQueryable());
+        return Task.FromResult(users.AsQueryable());
     }
 }
