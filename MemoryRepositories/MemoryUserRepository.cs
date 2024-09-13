@@ -17,11 +17,11 @@ public class InMemoryUserRepository : IUserRepo
     public Task UpdateAsync(User user)
     {
         var existingUser = users.FirstOrDefault(u => u.Id == user.Id);
-        if (existingUser == null || existingUser.password!= user.password)
+        if (existingUser == null || existingUser.Password!= user.Password)
             throw new InvalidOperationException("User not found");
 
         existingUser.UserName = user.UserName;
-        existingUser.password = user.password;
+        existingUser.Password = user.Password;
         existingUser.Email = user.Email;
         existingUser.Joined = user.Joined;
         existingUser.Subscribes = user.Subscribes;

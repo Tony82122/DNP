@@ -73,7 +73,7 @@ namespace CLI.UI
             Console.Write("Enter password: ");
             var password = Console.ReadLine();
 
-            var user = new User { UserName = username, password = password };
+            var user = new User { UserName = username, Password = password };
             await _userRepository.AddAsync(user);
 
             Console.WriteLine($"User {username} created successfully.");
