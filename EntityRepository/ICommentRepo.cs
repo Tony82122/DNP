@@ -10,4 +10,6 @@ public interface ICommentRepository
     Task<Comment> GetSingleAsync(int id);
     
     IQueryable<Comment> GetMany();
+    IQueryable<Comment> GetAll();
+    IQueryable<Comment> GetManyAsync(int userId);
 }

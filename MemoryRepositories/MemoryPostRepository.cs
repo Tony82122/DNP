@@ -22,7 +22,7 @@ public class InMemoryPostRepository : IPostRepo
 
         existingPost.Title = post.Title;
         existingPost.Content = post.Content;
-        existingPost.body = post.body;
+        existingPost.Body = post.Body;
         existingPost.UserId = post.UserId;
         existingPost.Upvotes = post.Upvotes;
         existingPost.Downvotes = post.Downvotes;

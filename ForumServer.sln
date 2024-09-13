@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityRepository", "EntityRepository\EntityRepository.csproj", "{2563A515-F6A9-4A9F-B3BF-B5F5FCD29237}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CLI", "CLI\CLI.csproj", "{3371343D-3222-4509-9E67-C532539D0962}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{2563A515-F6A9-4A9F-B3BF-B5F5FCD29237}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2563A515-F6A9-4A9F-B3BF-B5F5FCD29237}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2563A515-F6A9-4A9F-B3BF-B5F5FCD29237}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3371343D-3222-4509-9E67-C532539D0962}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3371343D-3222-4509-9E67-C532539D0962}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3371343D-3222-4509-9E67-C532539D0962}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3371343D-3222-4509-9E67-C532539D0962}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

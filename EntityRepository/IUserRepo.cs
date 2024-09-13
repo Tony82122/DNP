@@ -10,4 +10,5 @@ public interface IUserRepo
     Task<User> GetSingleAsync(int id);
     
     IQueryable<User> GetAll();
+    Task<IQueryable<User>> GetManyAsync();
 }
