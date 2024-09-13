@@ -5,7 +5,7 @@ namespace Server;
 
 public class InMemoryCommentRepository : ICommentRepository
 {
-    private readonly List<Comment> comments = new List<Comment>();
+    private List<Comment> comments = new List<Comment>();
 
     public Task<Comment> AddAsync(Comment comment)
     {
@@ -111,18 +111,18 @@ public class InMemoryCommentRepository : ICommentRepository
     
     public InMemoryCommentRepository()
     {
-        comments.Add(new Comment { Id = 1, PostId = 1, UserId = 1, Body = "yeah it was Trash", CreatedAt = DateTime.UtcNow });
-        comments.Add(new Comment { Id = 2, PostId = 1, UserId = 2, Body = "I liked playing the game", CreatedAt = DateTime.UtcNow });
-        comments.Add(new Comment { Id = 3, PostId = 2, UserId = 3, Body = "Nope, not worth it", CreatedAt = DateTime.UtcNow });
-        comments.Add(new Comment { Id = 4, PostId = 3, UserId = 4, Body = "This is amazing", CreatedAt = DateTime.UtcNow });
-        comments.Add(new Comment { Id = 5, PostId = 3, UserId = 5, Body = "I agree", CreatedAt = DateTime.UtcNow });
-        comments.Add(new Comment { Id = 6, PostId = 4, UserId = 6, Body = "No, I don't like it", CreatedAt = DateTime.UtcNow });
-        comments.Add(new Comment { Id = 7, PostId = 4, UserId = 7, Body = "I agree too", CreatedAt = DateTime.UtcNow });
-        comments.Add(new Comment { Id = 8, PostId = 5, UserId = 8, Body = "I love it", CreatedAt = DateTime.UtcNow });
-        comments.Add(new Comment { Id = 9, PostId = 5, UserId = 9, Body = "I agree", CreatedAt = DateTime.UtcNow });
-        comments.Add(new Comment { Id = 10, PostId = 5, UserId = 10, Body = "I disagree", CreatedAt = DateTime.UtcNow });
-        comments.Add(new Comment { Id = 11, PostId = 6, UserId = 11, Body = "I hate it", CreatedAt = DateTime.UtcNow });
-        comments.Add(new Comment { Id = 12, PostId = 6, UserId = 12, Body = "I agree 10/10", CreatedAt = DateTime.UtcNow });
+        comments.Add(new Comment { Id = 1, PostId = 1, UserId = 1294, Body = "yeah it was Trash", CreatedAt = DateTime.UtcNow });
+        comments.Add(new Comment { Id = 2, PostId = 1, UserId = 2591, Body = "I liked playing the game", CreatedAt = DateTime.UtcNow });
+        comments.Add(new Comment { Id = 3, PostId = 2, UserId = 3919, Body = "Nope, not worth it", CreatedAt = DateTime.UtcNow });
+        comments.Add(new Comment { Id = 4, PostId = 3, UserId = 4123, Body = "This is amazing", CreatedAt = DateTime.UtcNow });
+        comments.Add(new Comment { Id = 5, PostId = 3, UserId = 5192, Body = "I agree", CreatedAt = DateTime.UtcNow });
+        comments.Add(new Comment { Id = 6, PostId = 4, UserId = 6002, Body = "No, I don't like it", CreatedAt = DateTime.UtcNow });
+        comments.Add(new Comment { Id = 7, PostId = 4, UserId = 7334, Body = "I agree too", CreatedAt = DateTime.UtcNow });
+        comments.Add(new Comment { Id = 8, PostId = 5, UserId = 8231, Body = "I love it", CreatedAt = DateTime.UtcNow });
+        comments.Add(new Comment { Id = 9, PostId = 5, UserId = 9212, Body = "I agree", CreatedAt = DateTime.UtcNow });
+        comments.Add(new Comment { Id = 10, PostId = 5, UserId = 1001, Body = "I disagree", CreatedAt = DateTime.UtcNow });
+        comments.Add(new Comment { Id = 11, PostId = 6, UserId = 1122, Body = "I hate it", CreatedAt = DateTime.UtcNow });
+        comments.Add(new Comment { Id = 12, PostId = 6, UserId = 1219, Body = "I agree 10/10", CreatedAt = DateTime.UtcNow });
         
     }
     
@@ -130,6 +130,7 @@ public class InMemoryCommentRepository : ICommentRepository
     {
         if (!comments.Any())
         {
+            
             throw new InvalidOperationException("No comments found");
         }
 
