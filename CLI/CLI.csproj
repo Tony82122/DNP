@@ -10,6 +10,7 @@
     <ItemGroup>
       <ProjectReference Include="..\Domain\Domain.csproj" />
       <ProjectReference Include="..\EntityRepository\EntityRepository.csproj" />
+      <ProjectReference Include="..\FileRepositories\FileRepositories.csproj" />
       <ProjectReference Include="..\MemoryRepositories\MemoryRepositories.csproj" />
     </ItemGroup>
 
