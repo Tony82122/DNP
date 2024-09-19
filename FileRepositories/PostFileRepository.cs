@@ -15,14 +15,22 @@ public class PostFileRepository: IPostRepo
             File.WriteAllText(filePath, "[]");
         }
     }
-    public Task<Post> AddAsync(Post post)
+    public async Task<Post> AddAsync(Post post)
     {
-        throw new NotImplementedException();
+        string postsAsJson = await File.ReadAllTextAsync(filePath);
+        List<Post> posts = JsonSerializer.Deserialize<List<Post>>(postsAsJson)!;
+        int maxId = posts.Count > 0? posts.Max(p => p.Id) : 1;
+        post.Id = maxId + 1;
+        posts.Add(post);
+        postsAsJson = JsonSerializer.Serialize(posts);
+        await File.WriteAllTextAsync(filePath, postsAsJson);
+        return post;
     }
 
     public Task UpdateAsync(Post post)
     {
-        throw new NotImplementedException();
+        throw new NotImplementedException(); //TODO
+        
     }
 
     public Task DeleteAsync(int id)
