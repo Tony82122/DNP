@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using CLI.UI;
 using Entities;
 using EntityRepository;
+using FileRepositories;
 using Server;
 
 namespace CLI
@@ -13,9 +14,9 @@ namespace CLI
         {
             Console.WriteLine("Please wait while setting up the application...");
             await Task.Delay(2000);
-            var commentRepository = new InMemoryCommentRepository();
-            var userRepository = new InMemoryUserRepository();
-            var postRepository = new InMemoryPostRepository();
+            var commentRepository = new CommentFileRepository();
+            var userRepository = new UserFileRepository();
+            var postRepository = new PostFileRepository();
 
             var app = new CliApp(commentRepository, userRepository, postRepository);
             await app.RunAsync();

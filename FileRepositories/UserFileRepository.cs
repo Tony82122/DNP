@@ -14,33 +14,73 @@ public class UserFileRepository: IUserRepo
             File.WriteAllText(filePath, "[]");
         }
     }
-    public Task<User> AddAsync(User user)
+
+    public async Task<User> AddAsync(User user)
     {
-        throw new NotImplementedException();
+        string usersAsJson = await File.ReadAllTextAsync(filePath);
+        List<User> users = JsonSerializer.Deserialize<List<User>>(usersAsJson)!;
+        int maxId = users.Count > 0 ? users.Max(u => u.Id) : 1;
+        user.Id = maxId + 1;
+        users.Add(user);
+        usersAsJson = JsonSerializer.Serialize(users);
+        await File.WriteAllTextAsync(filePath, usersAsJson);
+        return user;
     }
 
-    public Task UpdateAsync(User user)
+    public async Task UpdateAsync(User user)
     {
-        throw new NotImplementedException();
+        string usersAsJson = await File.ReadAllTextAsync(filePath);
+        List<User> users = JsonSerializer.Deserialize<List<User>>(usersAsJson)!;
+        var existingUser = users.FirstOrDefault(u => u.Id == user.Id);
+        if (existingUser == null)
+        {
+            throw new InvalidOperationException("User not found");
+        }
+
+        existingUser.UserName = user.UserName;
+        existingUser.Email = user.Email;
+        existingUser.Password = user.Password;
+        usersAsJson = JsonSerializer.Serialize(users);
+        await File.WriteAllTextAsync(filePath, usersAsJson);
     }
 
-    public Task DeleteAsync(int id)
+    public async Task DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        string usersAsJson = await File.ReadAllTextAsync(filePath);
+        List<User> users = JsonSerializer.Deserialize<List<User>>(usersAsJson)!;
+        var user = users.FirstOrDefault(u => u.Id == id);
+        if (user == null)
+        {
+            throw new InvalidOperationException("User not found");
+        }
+        users.Remove(user);
+        usersAsJson = JsonSerializer.Serialize(users);
+        await File.WriteAllTextAsync(filePath, usersAsJson);
     }
 
-    public Task<User> GetSingleAsync(int id)
+    public async Task<User> GetSingleAsync(int id)
     {
-        throw new NotImplementedException();
+        string usersAsJson = await File.ReadAllTextAsync(filePath);
+        List<User> users = JsonSerializer.Deserialize<List<User>>(usersAsJson)!;
+        var user = users.FirstOrDefault(u => u.Id == id);
+        if (user == null)
+        {
+            throw new InvalidOperationException("User not found");
+        }
+        return user;
     }
 
     public IQueryable<User> GetAll()
     {
-        throw new NotImplementedException();
+        string usersAsJson = File.ReadAllTextAsync(filePath).Result;
+        List<User> users = JsonSerializer.Deserialize<List<User>>(usersAsJson)!;
+        return users.AsQueryable();
     }
 
-    public Task<IQueryable<User>> GetManyAsync()
+    public async Task<IQueryable<User>> GetManyAsync()
     {
-        throw new NotImplementedException();
+        string usersAsJson = await File.ReadAllTextAsync(filePath);
+        List<User> users = JsonSerializer.Deserialize<List<User>>(usersAsJson)!;
+        return users.AsQueryable();
     }
 }

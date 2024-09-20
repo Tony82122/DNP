@@ -28,6 +28,8 @@ namespace CLI.UI
 
         public async Task RunAsync()
         {
+            await RecentPostsAsync();
+
             while (true)
             {
                 Console.WriteLine("Choose an option:");
@@ -139,6 +141,62 @@ namespace CLI.UI
             {
                 Console.WriteLine(
                     $"Comment by User {comment.UserId}: {comment.Body}");
+            }
+        }
+
+        public async Task RecentPostsAsync()
+        {
+            var post1 = new Post
+            {
+                Title = "The game last night",
+                Body =
+                    "I didnt like the way England play so terrible in tournaments",
+                UserId = "1267",
+            };
+            var post2 = new Post
+            {
+                Title = "AFTV", Body = "He has to go blud!", UserId = "1075",
+            };
+            var post3 = new Post
+            {
+                Title = "Football talk",
+                Body = "When will Arsenal win the Champions league??",
+                UserId = "2234",
+            };
+            var post4 = new Post
+            {
+                Title = "Election results",
+                Body = "How many votes did Boris get??", UserId = "1568",
+            };
+            var post5 = new Post
+            {
+                Title = "Climate change", Body = "We need to act now!!",
+                UserId = "3321",
+            };
+            var post6 = new Post
+            {
+                Title = "Coronavirus", Body = "It's a pandemic!!",
+                UserId = "4456",
+            };
+            var post7 = new Post
+            {
+                Title = "Music trends", Body = "Why is Taylor Swift a thing??",
+                UserId = "5567",
+            };
+            await _postRepository.AddAsync(post1);
+            await _postRepository.AddAsync(post2);
+            await _postRepository.AddAsync(post3);
+            await _postRepository.AddAsync(post4);
+            await _postRepository.AddAsync(post5);
+            await _postRepository.AddAsync(post6);
+            await _postRepository.AddAsync(post7);
+            Console.WriteLine("Recent posts:");
+            var recentPosts = new[]
+                { post1, post2, post3, post4, post5, post6, post7 };
+            foreach (var post in recentPosts)
+            {
+                Console.WriteLine(
+                    $"Title: {post.Title}, Body: {post.Body}, UserId: {post.UserId}");
             }
         }
     }
