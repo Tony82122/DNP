@@ -10,6 +10,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CLI", "CLI\CLI.csproj", "{3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileRepositories", "FileRepositories\FileRepositories.csproj", "{354A0412-57D4-4A89-91C0-C2B26629D454}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{9DF9C154-EC10-473C-BFD3-70BB785A1F2A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiContracts", "ApiContracts\ApiContracts.csproj", "{C38AB8A6-8102-4954-BA86-53A447F97285}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{C6199A4C-8D9F-4ADE-849D-470F4538D9DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +42,16 @@ Global
 		{354A0412-57D4-4A89-91C0-C2B26629D454}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{354A0412-57D4-4A89-91C0-C2B26629D454}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{354A0412-57D4-4A89-91C0-C2B26629D454}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C38AB8A6-8102-4954-BA86-53A447F97285}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C38AB8A6-8102-4954-BA86-53A447F97285}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C38AB8A6-8102-4954-BA86-53A447F97285}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C38AB8A6-8102-4954-BA86-53A447F97285}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6199A4C-8D9F-4ADE-849D-470F4538D9DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6199A4C-8D9F-4ADE-849D-470F4538D9DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6199A4C-8D9F-4ADE-849D-470F4538D9DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6199A4C-8D9F-4ADE-849D-470F4538D9DC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C38AB8A6-8102-4954-BA86-53A447F97285} = {9DF9C154-EC10-473C-BFD3-70BB785A1F2A}
 	EndGlobalSection
 EndGlobal
