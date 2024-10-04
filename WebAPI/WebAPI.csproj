@@ -11,4 +11,16 @@
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\ApiContracts\ApiContracts.csproj" />
+      <ProjectReference Include="..\CLI\CLI.csproj" />
+      <ProjectReference Include="..\Domain\Domain.csproj" />
+      <ProjectReference Include="..\EntityRepository\EntityRepository.csproj" />
+      <ProjectReference Include="..\FileRepositories\FileRepositories.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Controllers\" />
+    </ItemGroup>
+
 </Project>
