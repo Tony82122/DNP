@@ -79,9 +79,5 @@ public class PostController : Controller
         return NoContent();
     }
     
-    // GET
-    public IActionResult Index()
-    {
-        return View();
-    }
+   
 }

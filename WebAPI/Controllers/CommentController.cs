@@ -70,9 +70,4 @@ public class CommentController : Controller
         return NoContent();
     }
 
-    // GET
-    public IActionResult Index()
-    {
-        return View();
-    }
 }
