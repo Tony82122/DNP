@@ -16,6 +16,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiContracts", "ApiContract
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{C6199A4C-8D9F-4ADE-849D-470F4538D9DC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{89A415E4-CB13-4D9A-AEEC-72313BFB43D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp1", "BlazorApp1\BlazorApp1.csproj", "{338FB676-C23E-42E2-9F2A-DB4296DFED3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,8 +54,13 @@ Global
 		{C6199A4C-8D9F-4ADE-849D-470F4538D9DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6199A4C-8D9F-4ADE-849D-470F4538D9DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6199A4C-8D9F-4ADE-849D-470F4538D9DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{338FB676-C23E-42E2-9F2A-DB4296DFED3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{338FB676-C23E-42E2-9F2A-DB4296DFED3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{338FB676-C23E-42E2-9F2A-DB4296DFED3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{338FB676-C23E-42E2-9F2A-DB4296DFED3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C38AB8A6-8102-4954-BA86-53A447F97285} = {9DF9C154-EC10-473C-BFD3-70BB785A1F2A}
+		{338FB676-C23E-42E2-9F2A-DB4296DFED3C} = {89A415E4-CB13-4D9A-AEEC-72313BFB43D5}
 	EndGlobalSection
 EndGlobal
