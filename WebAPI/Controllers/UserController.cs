@@ -32,7 +32,7 @@ public class UserController : Controller
         return Ok(user);
     }
     [HttpPost]
-    public async Task<IActionResult> CreateUser([FromBody] UserDTO userDto)
+    public async Task<IActionResult> CreateUser([FromBody] UserDto userDto)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState); // 400 Bad Request
@@ -53,7 +53,7 @@ public class UserController : Controller
             newUser);
     }
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateUser(int id, [FromBody] UserDTO userDto)
+    public async Task<IActionResult> UpdateUser(int id, [FromBody] UserDto userDto)
     {
         var userToUpdate = await _userRepository.GetSingleAsync(id);
         if (userToUpdate == null) return NotFound();
